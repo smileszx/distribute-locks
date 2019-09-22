@@ -5,6 +5,8 @@ import com.victor.lock.redisson.RedissonLockUtil;
 import com.victor.lock.redisson.RedissonProperties;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @Description
@@ -13,6 +15,8 @@ import org.redisson.api.RedissonClient;
  * @Date 2019/9/22 17:45
  **/
 public class RedisLockApplication {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(RedisLockApplication.class);
 
     private static final RedissonLockUtil redissonLockUtil = new RedissonLockUtil();
 
@@ -35,7 +39,7 @@ public class RedisLockApplication {
         Thread t1 = new Thread(()->{
             lock = redissonLockUtil.lock("redis-lock");
             try {
-                System.out.println(Thread.currentThread().getName() + ", 获得锁-" + lock.getName());
+                LOGGER.info(Thread.currentThread().getName() + ", 获得锁-" + lock.getName());
                 Thread.sleep(10000);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -49,7 +53,7 @@ public class RedisLockApplication {
         Thread t2 = new Thread(()->{
             lock = redissonLockUtil.lock("redis-lock");
             try {
-                System.out.println(Thread.currentThread().getName() + ", 获得锁-" + lock.getName());
+                LOGGER.info(Thread.currentThread().getName() + ", 获得锁-" + lock.getName());
                 Thread.sleep(10000);
             } catch (Exception e) {
                 e.printStackTrace();

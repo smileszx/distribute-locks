@@ -1,15 +1,46 @@
 package com.victor.lock.redisson;
 
+import org.apache.commons.lang3.StringUtils;
+import org.redisson.Redisson;
 import org.redisson.RedissonMultiLock;
 import org.redisson.RedissonRedLock;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
+import org.redisson.config.Config;
+import org.redisson.config.SingleServerConfig;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 public class RedissLockDemo {
+
+	public static void main(String[] args) {
+		//Redis 属性值
+		RedissonProperties p1 = new RedissonProperties();
+		Config config = new Config();
+		SingleServerConfig serverConfig = config.useSingleServer()
+				.setTimeout(p1.getTimeout())
+				.setConnectionPoolSize(p1.getConnectionPoolSize())
+				.setConnectionMinimumIdleSize(p1.getConnectionMinimumIdleSize());
+		if(StringUtils.isNotBlank(p1.getPassword())) {
+			serverConfig.setPassword(p1.getPassword());
+		}
+
+		serverConfig.setAddress("redis://192.168.1.101:6379");
+		RedissonClient c1 = Redisson.create(config);
+
+		serverConfig.setAddress("redis://192.168.1.105:6379");
+		RedissonClient c2 = Redisson.create(config);
+
+		serverConfig.setAddress("redis://192.168.1.160:6379");
+		RedissonClient c3 = Redisson.create(config);
+
+		testRedLock(c1, c2, c3);
+
+
+	}
+
     /**
      * 可重入锁（Reentrant Lock） 
      * Redisson的分布式可重入锁RLock Java对象实现了java.util.concurrent.locks.Lock接口，同时还支持自动过期解锁
@@ -116,7 +147,7 @@ public class RedissLockDemo {
 	 * @param redisson2
 	 * @param redisson3
 	 */
-	public void testRedLock(RedissonClient redisson1,RedissonClient redisson2, RedissonClient redisson3){  
+	public static void testRedLock(RedissonClient redisson1,RedissonClient redisson2, RedissonClient redisson3){
 	    RLock lock1 = redisson1.getLock("lock1");  
 	    RLock lock2 = redisson2.getLock("lock2");  
 	    RLock lock3 = redisson3.getLock("lock3");  
