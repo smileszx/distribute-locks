@@ -18,6 +18,7 @@
     <properties>
         <junit.version>4.12</junit.version>
         <lombok.version>1.18.8</lombok.version>
+        <commons-lang3.version>3.9</commons-lang3.version>
        <redisson.version>3.11.3</redisson.version>
     </properties>
     <!-- 全局依赖 -->
@@ -36,11 +37,15 @@
             <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
     </dependencies>
     <!-- 依赖管理 -->
     <dependencyManagement>
         <dependencies>
-
             <!-- Redis 分布式锁  -->
             <dependency>
                 <groupId>org.redisson</groupId>
