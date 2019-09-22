@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.victor.lock</groupId>
+    <artifactId>distribute-locks</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>redis-lock</module>
+        <module>zookeeper-lock</module>
+    </modules>
+
+
+    <!-- 依赖版本 -->
+    <properties>
+        <junit.version>4.12</junit.version>
+        <lombok.version>1.18.8</lombok.version>
+       <redisson.version>3.11.3</redisson.version>
+    </properties>
+    <!-- 全局依赖 -->
+    <dependencies>
+        <!-- 单元测试 -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- 简化代码Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    <!-- 依赖管理 -->
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- Redis 分布式锁  -->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <plugins>
+            <!--Idea自动重置language level和java compiler的解决-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
