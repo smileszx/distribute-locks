@@ -11,6 +11,7 @@
     <modules>
         <module>redis-lock</module>
         <module>zookeeper-lock</module>
+        <module>redis-cluster</module>
     </modules>
 
 
@@ -19,8 +20,11 @@
         <junit.version>4.12</junit.version>
         <lombok.version>1.18.8</lombok.version>
         <commons-lang3.version>3.9</commons-lang3.version>
-        <slf4j.version>1.7.25</slf4j.version>
-        <log4j2.version>2.12.1</log4j2.version>
+        <slf4j.version>1.7.26</slf4j.version>
+        <log4j2.version>2.11.2</log4j2.version>
+        <fastjson.version>1.2.61</fastjson.version>
+
+        <spring-boot.version>2.1.6.RELEASE</spring-boot.version>
         <redisson.version>3.11.3</redisson.version>
         <jedis.version>3.1.0</jedis.version>
     </properties>
@@ -57,6 +61,11 @@
             <artifactId>log4j-core</artifactId>
             <version>${log4j2.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-web</artifactId>
+            <version>${log4j2.version}</version>
+        </dependency>
         <!--用于与slf4j保持桥接-->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -69,10 +78,26 @@
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
         </dependency>
+        <!-- Ali fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+
     </dependencies>
     <!-- 依赖管理 -->
     <dependencyManagement>
+
         <dependencies>
+            <!-- Spring Boot 依赖 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!-- Redis 分布式锁  -->
             <dependency>
                 <groupId>org.redisson</groupId>
