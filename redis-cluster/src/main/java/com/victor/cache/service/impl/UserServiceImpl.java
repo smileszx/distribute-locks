@@ -27,8 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @RedisCache(type = User.class)
-    public User findUserById(Integer id) {
+    public User getUserById(Integer id) {
         User user = userMapper.selectByPrimaryKey(id);
         return user;
     }

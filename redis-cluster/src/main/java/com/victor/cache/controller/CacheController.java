@@ -52,8 +52,8 @@ public class CacheController {
 
     @GetMapping("/getUser")
     public User getUser (@RequestParam("id") Integer id) {
-        System.out.println(userService.findUserById(id));
-        return userService.findUserById(id);
+        System.out.println(userService.getUserById(id));
+        return userService.getUserById(id);
     }
 
     @GetMapping("/getUserList")

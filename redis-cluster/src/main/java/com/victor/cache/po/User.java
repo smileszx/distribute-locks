@@ -4,11 +4,13 @@ import com.alibaba.fastjson.annotation.JSONField;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 @Data
 public class User implements Serializable {
     @ApiModelProperty(value = "主键id")
+    @Id
     private Integer id;
 
     @ApiModelProperty(value = "用户名")
