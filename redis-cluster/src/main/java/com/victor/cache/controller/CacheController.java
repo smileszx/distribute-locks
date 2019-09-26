@@ -1,14 +1,15 @@
 package com.victor.cache.controller;
 
+import com.victor.cache.po.User;
 import com.victor.cache.service.DataSourceService;
 import com.victor.cache.redis.service.JedisService;
+import com.victor.cache.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @Description
@@ -24,6 +25,9 @@ public class CacheController {
     private JedisService jedisService;
     @Autowired
     private DataSourceService dataSourceService;
+
+    @Autowired
+    private UserService userService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CacheController.class);
 
@@ -45,4 +49,22 @@ public class CacheController {
     public String getValue (@RequestParam("key") String key) {
         return dataSourceService.findDataByKey(key);
     }
+
+    @GetMapping("/getUser")
+    public User getUser (@RequestParam("id") Integer id) {
+        System.out.println(userService.findUserById(id));
+        return userService.findUserById(id);
+    }
+
+    @GetMapping("/getUserList")
+    public List<User> getUserList () {
+        return userService.findUserList();
+    }
+
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+    public String addUser (@RequestBody User user) {
+        System.out.println(user);
+        return userService.addUser(user);
+    }
+
 }

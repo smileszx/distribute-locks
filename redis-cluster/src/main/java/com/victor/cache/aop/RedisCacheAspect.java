@@ -33,7 +33,7 @@ public class RedisCacheAspect {
     /**
      * 切点
      */
-    @Pointcut("execution(public * com.victor.cache.service..*.*(..))")
+    @Pointcut("execution(public * com.victor.cache.service..*.find*(..))")
     public void webAspect(){}
 
     @Around("webAspect()")
@@ -44,7 +44,8 @@ public class RedisCacheAspect {
         String methodName = pjp.getSignature().getName();
         Object[] args = pjp.getArgs();
         //根据类名，方法名和参数生成key
-        String key = genKey(className,methodName,args);
+//        String key = genKey(className,methodName,args);
+        String key = String.join(":", "redis-cluster", args.toString());
         LOGGER.info("生成的key[{}]",key);
         //得到被代理的方法
         Signature signature = pjp.getSignature();

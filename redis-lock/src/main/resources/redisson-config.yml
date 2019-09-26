@@ -26,8 +26,24 @@
 #  class: "org.redisson.codec.JsonJacksonCodec"
 #transportMode: "NIO"
 
-clusterServersConfig:
-  nodeAddresses:
-    - redis://192.168.1.160:7001
-    - redis://192.168.1.163:7004
-    - redis://192.168.1.165:7006
+#clusterServersConfig:
+#  nodeAddresses:
+#    - redis://192.168.1.160:7001
+#    - redis://192.168.1.163:7004
+#    - redis://192.168.1.165:7006
+
+singleServerConfig:
+  # Redis server address
+  address: redis://192.168.1.160:7001
+  # Minimum idle subscription connection amount
+  subscriptionConnectionMinimumIdleSize: 1
+  # Redis subscription connection maximum pool size
+  subscriptionConnectionPoolSize: 50
+  # Minimum idle Redis connection amount
+  connectionMinimumIdleSize: 24;
+  # Redis connection maximum pool size
+  onnectionPoolSize: 64
+  # Database index used for Redis connection
+  database: 0;
+  # Interval in milliseconds to check DNS
+  dnsMonitoringInterval: 5000

@@ -17,16 +17,28 @@
 
     <!-- 依赖版本 -->
     <properties>
+        <!-- Common -->
         <junit.version>4.12</junit.version>
-        <lombok.version>1.18.8</lombok.version>
-        <commons-lang3.version>3.9</commons-lang3.version>
         <slf4j.version>1.7.26</slf4j.version>
         <log4j2.version>2.11.2</log4j2.version>
+        <lombok.version>1.18.8</lombok.version>
+        <commons-lang3.version>3.9</commons-lang3.version>
         <fastjson.version>1.2.61</fastjson.version>
-
+        <swagger2.version>2.9.2</swagger2.version>
+        <!-- Spring -->
         <spring-boot.version>2.1.6.RELEASE</spring-boot.version>
+        <!-- Cache -->
         <redisson.version>3.11.3</redisson.version>
         <jedis.version>3.1.0</jedis.version>
+        <!-- DB -->
+        <druid-starter.version>1.1.20</druid-starter.version>
+        <mysql.version>8.0.16</mysql.version>
+        <!-- ORM -->
+        <mybatis-starter.version>2.1.0</mybatis-starter.version>
+        <mybatis-generator.version>1.3.3</mybatis-generator.version>
+        <pagehelper-starter.version>1.2.12</pagehelper-starter.version>
+        <pagehelper.version>5.1.10</pagehelper.version>
+        <mapper-starter.version>2.1.5</mapper-starter.version>
     </properties>
     <!-- 全局依赖 -->
     <dependencies>
@@ -84,7 +96,17 @@
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
-
+        <!-- swagger2文档管理 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger2.version}</version>
+        </dependency>
     </dependencies>
     <!-- 依赖管理 -->
     <dependencyManagement>
@@ -98,7 +120,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!-- Redis 分布式锁  -->
+            <!-- Redis  -->
             <dependency>
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-boot-starter</artifactId>
@@ -109,11 +131,49 @@
                 <artifactId>redisson</artifactId>
                 <version>${redisson.version}</version>
             </dependency>
-            <!-- redis -->
             <dependency>
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
                 <version>${jedis.version}</version>
+            </dependency>
+
+            <!--Mysql数据库驱动-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+
+            <!-- ORM 持久层 -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-core</artifactId>
+                <version>${mybatis-generator.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper-spring-boot-starter</artifactId>
+                <version>${mapper-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
