@@ -1,6 +1,5 @@
-package com.victor.cache.redis.service;
+package com.victor.cache.redis;
 
-import com.victor.cache.redis.service.JedisService;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.JedisCluster;
 import redis.clients.jedis.params.SetParams;

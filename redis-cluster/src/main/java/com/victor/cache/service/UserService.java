@@ -32,4 +32,10 @@ public interface UserService {
      */
     List<User> findUserList();
 
+    /**
+     * 测试JDK动态代理
+     * @return
+     */
+    String testJDKProxy();
+
 }

@@ -1,4 +1,4 @@
-package com.victor.cache.redis.service;
+package com.victor.cache.redis;
 
 /**
  * @Description

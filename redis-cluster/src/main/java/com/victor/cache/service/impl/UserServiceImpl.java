@@ -37,4 +37,10 @@ public class UserServiceImpl implements UserService {
     public List<User> findUserList() {
         return userMapper.selectAll();
     }
+
+    @Override
+    public String testJDKProxy() {
+        System.out.println("test jdk proxy");
+        return "jdk proxy";
+    }
 }

@@ -5,24 +5,22 @@ import com.alibaba.fastjson.JSON;
 import java.lang.reflect.Method;
 
 import com.victor.cache.annotation.RedisCache;
-import com.victor.cache.redis.service.JedisService;
+import com.victor.cache.redis.JedisService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 /**
  * 面向切面编程
- *
+ * 暂时注释，2019-09-29
  */
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class RedisCacheAspect {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RedisCacheAspect.class);

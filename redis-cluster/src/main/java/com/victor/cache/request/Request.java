@@ -7,4 +7,6 @@ package com.victor.cache.request;
  * @Date 2019/9/27 9:17
  **/
 public interface Request {
+
+    void process();
 }

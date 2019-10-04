@@ -2,7 +2,7 @@ package com.victor.cache.controller;
 
 import com.victor.cache.po.User;
 import com.victor.cache.service.DataSourceService;
-import com.victor.cache.redis.service.JedisService;
+import com.victor.cache.redis.JedisService;
 import com.victor.cache.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
